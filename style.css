@@ -1,0 +1,88 @@
+.hero {
+  height: 80vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.nav-buttons {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+}
+
+.hero .text-container {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-80%);
+  text-align: left;
+}
+
+#title {
+  color: #184a57;
+  font-size: 12rem;
+  font-weight: bold;
+  font-family: Poppins;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+
+#catch_phrase {
+  color: #184a57;
+  font-family: Poppins;
+  font-size: 35px;
+  font-weight: lighter;
+  text-align: center;
+  display: block;
+  margin-left: -50%;
+  width: 200%;
+}
+
+#id {
+  color: #184a57;
+}
+
+.button {
+  font-size: 16px;
+  font-family: Poppins;
+  border-radius: 20px;
+  padding: 8px 25px;
+  position: relative;
+  /* background-color: #184a57; */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sign-up {
+  background-color: #184a57;
+  color: white;
+}
+
+.login {
+  background-color: white;
+  color: #184a57;
+}
+
+.sign-up:hover {
+  background-color: #235e6f;
+}
+
+.login:hover {
+  background-color: white;
+  opacity: 0.8;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
