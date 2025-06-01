@@ -86,3 +86,159 @@
 .button:hover {
   transform: translateY(-2px);
 }
+
+.trending-places {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.section-title {
+  font-family: Poppins;
+  color: #184a57;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.place-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.place-card:hover {
+  transform: translateY(-5px);
+}
+
+.place-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.place-info {
+  padding: 20px;
+}
+
+.place-name {
+  font-family: Poppins;
+  font-size: 1.5rem;
+  color: #184a57;
+  margin-bottom: 10px;
+}
+
+.place-description {
+  font-family: Poppins;
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.view-activities-btn {
+  background-color: #184a57;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: Poppins;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.view-activities-btn:hover {
+  background-color: #235e6f;
+  transform: translateY(-2px);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.activities-modal {
+  background-color: white;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-radius: 15px 15px 0 0;
+}
+
+.modal-header h2 {
+  font-family: Poppins;
+  color: #184a57;
+  margin: 0;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+}
+
+.activities-list {
+  padding: 20px;
+}
+
+.activity-item {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-item h4 {
+  font-family: Poppins;
+  color: #184a57;
+  margin: 0 0 10px 0;
+}
+
+.activity-item p {
+  font-family: Poppins;
+  color: #666;
+  margin: 0 0 10px 0;
+  line-height: 1.5;
+}
+
+.activity-item .location {
+  font-family: Poppins;
+  color: #184a57;
+  font-size: 0.9rem;
+  display: block;
+}
