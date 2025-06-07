@@ -1,3 +1,13 @@
+:root {
+  --primary-color: #184a57;
+  --primary-light: #235e6f;
+  --secondary-color: #f8f9fa;
+  --accent-color: #00c6b6;
+  --text-dark: #2d3436;
+  --text-light: #636e72;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .hero {
   height: 80vh;
   overflow: hidden;
@@ -24,27 +34,31 @@
   position: absolute;
   top: 50%;
   left: 8%;
-  transform: translateY(-80%);
+  transform: translateY(-60%);
   text-align: left;
 }
 
 #title {
-  color: #184a57;
-  font-size: 12rem;
+  color: var(--secondary-color);
+  font-size: 10rem;
+  letter-spacing: -3px;
   font-weight: bold;
   font-family: Poppins;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 10px 5px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInUp 1s ease-out;
   margin: 0;
 }
 
 #catch_phrase {
-  color: #184a57;
+  color: var(--secondary-color);
   font-family: Poppins;
-  font-size: 35px;
-  font-weight: lighter;
+  font-size: 2rem;
+  letter-spacing: -2px;
+  font-weight: bold;
   text-align: center;
   display: block;
   margin-left: -50%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   width: 200%;
 }
 
@@ -92,17 +106,36 @@
   background-color: #f8f9fa;
 }
 
+/* Trending Places section */
 .section-title {
   font-family: Poppins;
   color: #184a57;
-  font-size: 2.5rem;
+  font-size: 50px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after{
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  border-radius: 2px;
 }
 
 /* for side by side view */
 .places-grid {
+  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* grid-template-columns: 1fr 1fr; */
@@ -116,12 +149,13 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .place-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .place-image {
@@ -130,16 +164,21 @@
   object-fit: cover;
 }
 
+.place-image:hover {
+  transform: scale(1.1);
+}
+
 .place-info {
   padding: 20px;
 }
 
 .place-name {
   font-family: Poppins;
-  font-size: 1.5rem;
+  font-size: 2rem;
   color: #184a57;
-  margin-bottom: 10px;
+  margin: 0;
   text-align: center;
+  font-weight: bold;
 }
 
 /* .place-description {
@@ -159,12 +198,14 @@
   font-family: Poppins;
   margin-top: 10px;
   transition: all 0.3s ease;
-}
+  display: block;
+  margin: 10px auto 0;
+} */
 
-.view-activities-btn:hover {
+/* .view-activities-btn:hover {
   background-color: #235e6f;
   transform: translateY(-2px);
-}
+} */
 
 .modal-overlay {
   position: fixed;
@@ -213,6 +254,12 @@
   font-size: 24px;
   cursor: pointer;
   color: #666;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .activities-list {
@@ -228,12 +275,14 @@
   border-bottom: none;
 }
 
+/* activity name */
 .activity-item h4 {
   font-family: Poppins;
   color: #184a57;
   margin: 0 0 10px 0;
 }
 
+/* activity decription */
 .activity-item p {
   font-family: Poppins;
   color: #666;
@@ -246,4 +295,5 @@
   color: #184a57;
   font-size: 0.9rem;
   display: block;
-} */
+  margin-top: 5px;
+}

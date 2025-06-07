@@ -2,7 +2,7 @@ export const states = [
   {
     id: "california",
     name: "California",
-    image: "./src/images/california.jpg",
+    image: "src/images/california.jpg",
 
     activities: [
       {
@@ -28,7 +28,7 @@ export const states = [
   {
     id: "new-york",
     name: "New York",
-    image: "./images/new_york.jpeg",
+    image: "src/images/new_york.jpeg",
 
     activities: [
       {
@@ -52,7 +52,7 @@ export const states = [
   {
     id: "florida",
     name: "Florida",
-    image: "./images/florida.jpg",
+    image: "src/images/florida.jpg",
 
     activities: [
       {
@@ -76,7 +76,7 @@ export const states = [
   {
     id: "rome",
     name: "Rome",
-    image: "./images/rome.jpg",
+    image: "src/images/rome.jpg",
 
     activities: [
       {
@@ -105,58 +105,56 @@ export const states = [
   {
     id: "london",
     name: "London",
-    image: "./images/london.jpg",
+    image: "src/images/london.jpg",
 
     activities: [
       {
         name: "Buckingham Palace",
         description:
-          "Buckingham Palace, the King's official London residence, is one of England’s most iconic landmarks.",
+          "Buckingham Palace, the King's official London residence, is one of England's most iconic landmarks.",
         location: "London, England",
       },
 
       {
         name: "Westminster Abbey",
         description:
-          "Westminster Abbey is a historic church in London known for royal coronations, weddings, and burials. It’s a masterpiece of Gothic architecture and a symbol of British heritage.",
+          "Westminster Abbey is a historic church in London known for royal coronations, weddings, and burials. It's a masterpiece of Gothic architecture and a symbol of British heritage.",
         location: "London, United Kingdom",
       },
 
       {
         name: "Dover Castle",
         description:
-          "Dover Castle is one of England’s largest and oldest castles, known as the “Key to England” for its strategic role in defense. Perched on the White Cliffs, it has protected the English coast for over 900 years.",
+          "Dover Castle is one of England's largest and oldest castles, known as the Key to England for its strategic role in defense. Perched on the White Cliffs, it has protected the English coast for over 900 years",
         location: "Kent United Kingdom",
       },
     ],
   },
 
-//   Dont forget to change description
+  //   Dont forget to change description
   {
     id: "japan",
     name: "Japan",
-    image: "./images/japan.jpg",
+    image: "src/images/japan.jpg",
 
     activities: [
       {
-        name: "Buckingham Palace",
+        name: "Mount Fuji",
         description:
-          "Buckingham Palace, the King's official London residence, is one of England’s most iconic landmarks.",
-        location: "London, England",
+          "Japan's highest mountain and most iconic natural landmark, a UNESCO World Heritage site.",
+        location: "Honshu Island, Japan",
       },
-
       {
-        name: "Westminster Abbey",
+        name: "Senso-ji Temple",
         description:
-          "Westminster Abbey is a historic church in London known for royal coronations, weddings, and burials. It’s a masterpiece of Gothic architecture and a symbol of British heritage.",
-        location: "London, United Kingdom",
+          "Tokyo's oldest Buddhist temple, featuring stunning traditional architecture and bustling shopping streets.",
+        location: "Tokyo, Japan",
       },
-
       {
-        name: "Dover Castle",
+        name: "Fushimi Inari Shrine",
         description:
-          "Dover Castle is one of England’s largest and oldest castles, known as the “Key to England” for its strategic role in defense. Perched on the White Cliffs, it has protected the English coast for over 900 years.",
-        location: "Kent United Kingdom",
+          "Famous for its thousands of vermillion torii gates, this Shinto shrine offers a unique hiking experience.",
+        location: "Kyoto, Japan",
       },
     ],
   },
