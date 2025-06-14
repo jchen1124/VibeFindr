@@ -36,6 +36,7 @@
   left: 8%;
   transform: translateY(-60%);
   text-align: left;
+  /* animation: fadeInUp 1s ease-out; */
 }
 
 #title {
@@ -60,6 +61,7 @@
   margin-left: -50%;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   width: 200%;
+  animation: fadeInUp 1s ease-out;
 }
 
 #id {
@@ -117,7 +119,7 @@
   position: relative;
 }
 
-.section-title::after{
+.section-title::after {
   content: "";
   position: absolute;
   bottom: -15px;
@@ -141,6 +143,7 @@
   /* grid-template-columns: 1fr 1fr; */
   gap: 30px;
   padding: 20px;
+  /* animation: fadeInUp 1s ease-out; */
 }
 
 /* The card itself */
@@ -297,3 +300,159 @@
   display: block;
   margin-top: 5px;
 }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.animate-on-scroll {
+  /* animation: fadeUpIn 1s ease-out;
+  transition-delay: 0.2s;  */
+
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+  transition-delay: 0.3s;
+}
+
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* second page */
+
+.gradient-background {
+  background: linear-gradient(
+    300deg,
+    var(--secondary-color),
+    var(--primary-light)
+  );
+  background-size: 180% 180%;
+  animation: gradient-animation 18s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* .p-3{
+  background-color: var(--primary-light);
+} */
+
+.vf-logo {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--accent-color)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-10deg);
+  transition: all 0.3s ease;
+}
+
+.vf-text {
+  color: white;
+  font-family: Poppins;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  transform: rotate(10deg);
+}
+
+.vf-logo:hover {
+  transform: rotate(0deg) scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 198, 182, 0.3);
+}
+
+.vf-text-2 {
+  font-weight: bold;
+  font-size: 30px;
+  font-family: Poppins;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  height: 90px; /* Match your logo height */
+  font-family: Poppins;
+  font-size: 20px;
+}
+
+.carousel-inner img{
+  border-radius: 30px;
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+}
+
+.carousel-section{
+  position: relative;
+}
+
+.search-container{
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;  /* This ensures it stays on top */
+  width: 50%;
+
+}
+
+/* Oval Search box  */
+.search-wrapper{
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  padding: 10px 20px;
+  justify-content: space-between;
+
+}
+
+.search-input{
+  outline: none;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.search-button{
+  border-radius: 40px;
+  padding: 5px 15px;
+  color: var(--secondary-color);
+  background: var(--primary-color);
+  border: 2px solid transparent;
+}
+
+.search-button:hover{
+  transform: translateY(-2px);
+  background-color: var(--primary-color);
+  opacity: 0.6;
+ transition: all 0.3s ease-out;
+}
+
+
+
+
+

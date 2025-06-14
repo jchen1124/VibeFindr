@@ -1,5 +1,11 @@
 import { states } from "../data/default_place_data.js";
 
+
+document.getElementById("explore-button").addEventListener("click", function(){
+  window.location.href="main_page.html"
+});
+
+
 // Creating the cards for the 6 trending places
 function createStateCard(state) {
   return `
@@ -17,6 +23,7 @@ function createStateCard(state) {
     `;
 }
 
+// Putting together information about the trending states
 function createActivityContent(state) {
   const activitiesList = state.activities
     .map(
