@@ -1,13 +1,4 @@
-
-:root {
-    --primary-color: #184a57;
-    --primary-light: #235e6f;
-    --secondary-color: #f8f9fa;
-    --accent-color: #00c6b6;
-    --text-dark: #2d3436;
-    --text-light: #636e72;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+@import url('style.css');
 
 .main-page{
   background-color: (var(--primary-color));
