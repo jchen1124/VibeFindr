@@ -329,6 +329,10 @@
 
 /* second page */
 
+.main-page{
+  background-color: (var(--primary-color));
+}
+
 .gradient-background {
   background: linear-gradient(
     300deg,
@@ -412,7 +416,7 @@
 
 .search-container{
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;  /* This ensures it stays on top */
