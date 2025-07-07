@@ -103,8 +103,8 @@ export const states = [
   },
 
   {
-    id: "london",
-    name: "London",
+    id: "united-kingdom",
+    name: "United Kingdom",
     image: "src/images/london.jpg",
 
     activities: [

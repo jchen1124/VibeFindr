@@ -1,10 +1,10 @@
 import { states } from "../data/default_place_data.js";
 
-
-document.getElementById("explore-button").addEventListener("click", function(){
-  window.location.href="main_page.html"
-});
-
+document
+  .getElementById("explore-button")
+  .addEventListener("click", function () {
+    window.location.href = "main_page.html";
+  });
 
 // Creating the cards for the 6 trending places
 function createStateCard(state) {

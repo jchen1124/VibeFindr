@@ -103,8 +103,8 @@ export const states = [
   },
 
   {
-    id: "london",
-    name: "London",
+    id: "united-kingdom",
+    name: "United King",
     image: "./images/london.jpg",
 
     activities: [
@@ -131,7 +131,7 @@ export const states = [
     ],
   },
 
-//   Dont forget to change description
+  //   Dont forget to change description
   {
     id: "japan",
     name: "Japan",
