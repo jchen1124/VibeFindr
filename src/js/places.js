@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function findAndShowNearbyPlaces() {
   try {
+    document.getElementById("places-loading-spinner").style.display = "flex";
     const position = await getUsersLocation();
     const userLocation = {
       lat: position.coords.latitude,
@@ -15,55 +16,57 @@ async function findAndShowNearbyPlaces() {
 
     console.log("User location:", userLocation);
 
-    const restaurantRequest = {
-      fields: ["displayName", "location", "rating", "photos"],
-      locationRestriction: {
-        center: userLocation,
-        radius: 5000,
-      },
-      includedTypes: ["restaurant"],
-      maxResultCount: 5,
-    };
+    // const restaurantRequest = {
+    //   fields: ["displayName", "location", "rating", "photos"],
+    //   locationRestriction: {
+    //     center: userLocation,
+    //     radius: 5000,
+    //   },
+    //   includedTypes: ["restaurant"],
+    //   maxResultCount: 5,
+    // };
 
     const attractionRequest = {
       fields: ["displayName", "location", "rating", "photos"],
       locationRestriction: {
         center: userLocation,
-        radius: 5000,
+        radius: 20000,
       },
       includedTypes: ["tourist_attraction"],
-      maxResultCount: 5,
+      maxResultCount: 6,
     };
 
     // Now you can use importLibrary directly
     const { Place } = await google.maps.importLibrary("places");
     const { places } = await Place.searchNearby(attractionRequest);
 
-    const { places: restaurantPlaces } = await Place.searchNearby(
-      restaurantRequest
-    );
+    // const { places: restaurantPlaces } = await Place.searchNearby(
+    //   restaurantRequest
+    // );
 
-    const { places: attractionPlaces } = await Place.searchNearby(
-      attractionRequest
-    );
+    // const { places: attractionPlaces } = await Place.searchNearby(
+    //   attractionRequest
+    // );
 
-    // const combinedPlaces = [...restaurantPlaces, ...attractionPlaces];
-    const labeledRestaurants = restaurantPlaces.map((p) => ({
-      ...p,
-      category: "Restaurant",
-    }));
+    // // const combinedPlaces = [...restaurantPlaces, ...attractionPlaces];
+    // const labeledRestaurants = restaurantPlaces.map((p) => ({
+    //   ...p,
+    //   category: "Restaurant",
+    // }));
 
-    const labeledAttractions = attractionPlaces.map((p) => ({
-      ...p,
+    // const labeledAttractions = attractionPlaces.map((p) => ({
+    //   ...p,
 
-      category: "Attraction",
-    }));
+    //   category: "Attraction",
+    // }));
 
-    const combinedPlaces = [...labeledRestaurants, ...labeledAttractions];
+    // const combinedPlaces = [...labeledRestaurants, ...labeledAttractions];
 
-    console.log(combinedPlaces[0]);
-    displayPlaces(combinedPlaces);
+    //console.log(combinedPlaces[0]);
+    displayPlaces(places);
+    document.getElementById("places-loading-spinner").style.display = "none";
   } catch (error) {
+    document.getElementById("places-loading-spinner").style.display = "none";
     console.error("An error has occurred: ", error);
     document.getElementById("nearby-places-container").innerText =
       "Error occurred";
@@ -107,14 +110,13 @@ async function displayPlaces(places) {
       let name = "Unknown Name";
       if (place.displayName) name = place.displayName.text || place.displayName;
       let lat =
-        typeof place.location?.lat === "function"
+        typeof place.location.lat === "function"
           ? place.location.lat()
-          : place.location?.lat;
-
+          : place.location.lat;
       let lng =
-        typeof place.location?.lng === "function"
+        typeof place.location.lng === "function"
           ? place.location.lng()
-          : place.location?.lng;
+          : place.location.lng;
 
       // Get Location
 
@@ -126,10 +128,10 @@ async function displayPlaces(places) {
         address = await reverseGeocode(lat, lng);
       }
 
-      const rating = place.rating ? `⭐️ ${place.rating} / 5` : "No Rating";
+      const rating = place.rating ? `${place.rating} / 5` : "No Rating";
 
       // Default HTML if no photo is shown
-      let photosHTML = `<div style="width: 100%; height: 200px; background-color: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;"> No Image </div>`;
+      let photosHTML = `<div style="width: 100%; height: 200px; background-color: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;"> <i class='fas fa-image fa-2x text-muted'></i> </div>`;
       if (place.photos && place.photos.length > 0 && place.photos[0].Dg) {
         const photoRef = place.photos[0].Dg.split("/photos/")[1];
         if (photoRef) {
@@ -141,10 +143,11 @@ async function displayPlaces(places) {
           <div class="card h-100 shadow-sm">
            ${photosHTML}
            <div class="card-body">
-           <p class="badge bg-secondary mb-2">${place.category}</p>
-           <h5 class="card-title">${name}</h5>
-           <p class="card-text text-muted"> ${address}</p>
-           <p class="card-text">${rating} </p>
+             <div class="place-icons mb-2">
+               <i class="fas fa-map-marker-alt"></i> <span>${address}</span>
+               <i class="fas fa-star ms-3"></i> <span>${rating}</span>
+             </div>
+             <h5 class="card-title">${name}</h5>
            </div>
           </div>
         </div>

@@ -184,6 +184,10 @@
   font-weight: bold;
 }
 
+.default-nearby-places{
+  text-align: center;
+}
+
 /* .place-description {
   font-family: Poppins;
   color: #666;
