@@ -26,43 +26,30 @@ async function findAndShowNearbyPlaces() {
     //   maxResultCount: 5,
     // };
 
-    const attractionRequest = {
-      fields: ["displayName", "location", "rating", "photos"],
-      locationRestriction: {
-        center: userLocation,
-        radius: 20000,
-      },
-      includedTypes: ["tourist_attraction"],
-      maxResultCount: 6,
-    };
+    // const attractionRequest = {
+    //   fields: ["displayName", "location", "rating", "photos"],
+    //   locationRestriction: {
+    //     center: userLocation,
+    //     radius: 20000,
+    //   },
+    //   includedTypes: ["tourist_attraction"],
+    //   maxResultCount: 6,
+    // };
 
     // Now you can use importLibrary directly
-    const { Place } = await google.maps.importLibrary("places");
-    const { places } = await Place.searchNearby(attractionRequest);
+    // const { Place } = await google.maps.importLibrary("places");
+    // const { places } = await Place.searchNearby(attractionRequest);
 
-    // const { places: restaurantPlaces } = await Place.searchNearby(
-    //   restaurantRequest
-    // );
+    const locationString = `${userLocation.lat}, ${userLocation.lng}`;
+    const radius = 20000;
+    const maxResult = 6;
+    const type = "tourist_attraction"
+    const response = await fetch(
+      `http://localhost:3001/api/places?location=${locationString}&type=${type}&radius=${radius}`
+    );
+    const data = await response.json();
+    const places = data.results.slice(0, maxResult);
 
-    // const { places: attractionPlaces } = await Place.searchNearby(
-    //   attractionRequest
-    // );
-
-    // // const combinedPlaces = [...restaurantPlaces, ...attractionPlaces];
-    // const labeledRestaurants = restaurantPlaces.map((p) => ({
-    //   ...p,
-    //   category: "Restaurant",
-    // }));
-
-    // const labeledAttractions = attractionPlaces.map((p) => ({
-    //   ...p,
-
-    //   category: "Attraction",
-    // }));
-
-    // const combinedPlaces = [...labeledRestaurants, ...labeledAttractions];
-
-    //console.log(combinedPlaces[0]);
     displayPlaces(places);
     document.getElementById("places-loading-spinner").style.display = "none";
   } catch (error) {
