@@ -1,15 +1,16 @@
 @import url("style.css");
 
 .main-page {
-  background-color: (var(--primary-color));
+  background-color: var(--secondary-color);
+  /* background-color: black; */
 }
 
-.gradient-bg {
+/* .gradient-bg {
   background: linear-gradient(120deg, #e0f7fa 0%, #f8f9fa 100%);
   min-height: 100vh;
-}
+} */
 
-.carousel-img-overlay {
+/* .carousel-img-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -23,7 +24,7 @@
   z-index: 2;
   border-radius: 30px;
   pointer-events: none;
-}
+} */
 
 .carousel-inner .carousel-item {
   position: relative;

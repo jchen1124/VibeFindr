@@ -1,5 +1,5 @@
-import config from "../config/config.js";
-const apiKey = config.GOOGLE_PLACES_API_KEY;
+// import config from "../config/config.js";
+// const apiKey = config.GOOGLE_PLACES_API_KEY;
 
 document.addEventListener("DOMContentLoaded", () => {
   findAndShowNearbyPlaces();
@@ -16,38 +16,15 @@ async function findAndShowNearbyPlaces() {
 
     console.log("User location:", userLocation);
 
-    // const restaurantRequest = {
-    //   fields: ["displayName", "location", "rating", "photos"],
-    //   locationRestriction: {
-    //     center: userLocation,
-    //     radius: 5000,
-    //   },
-    //   includedTypes: ["restaurant"],
-    //   maxResultCount: 5,
-    // };
-
-    // const attractionRequest = {
-    //   fields: ["displayName", "location", "rating", "photos"],
-    //   locationRestriction: {
-    //     center: userLocation,
-    //     radius: 20000,
-    //   },
-    //   includedTypes: ["tourist_attraction"],
-    //   maxResultCount: 6,
-    // };
-
-    // Now you can use importLibrary directly
-    // const { Place } = await google.maps.importLibrary("places");
-    // const { places } = await Place.searchNearby(attractionRequest);
-
     const locationString = `${userLocation.lat}, ${userLocation.lng}`;
     const radius = 20000;
     const maxResult = 6;
-    const type = "tourist_attraction"
+    const type = "tourist_attraction";
     const response = await fetch(
       `http://localhost:3001/api/places?location=${locationString}&type=${type}&radius=${radius}`
     );
     const data = await response.json();
+    console.log("full place data: ", data);
     const places = data.results.slice(0, maxResult);
 
     displayPlaces(places);
@@ -70,17 +47,16 @@ function getUsersLocation() {
 }
 
 // Takes lat & lng and converts it to the actual address
-function reverseGeocode(lat, lng) {
-  return new Promise((resolve, reject) => {
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
-      if (status === "OK" && results[0]) {
-        resolve(results[0].formatted_address);
-      } else {
-        resolve("Address not found");
-      }
-    });
-  });
+async function reverseGeocode(lat, lng) {
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/reverse-geocode?lat=${lat}&lng=${lng}`
+    );
+    const data = await response.json();
+    return data.address || "Address not found";
+  } catch (error) {
+    return "Address not found";
+  }
 }
 
 async function displayPlaces(places) {
@@ -94,16 +70,9 @@ async function displayPlaces(places) {
   // Create cards of each place
   const placeCards = await Promise.all(
     places.map(async (place) => {
-      let name = "Unknown Name";
-      if (place.displayName) name = place.displayName.text || place.displayName;
-      let lat =
-        typeof place.location.lat === "function"
-          ? place.location.lat()
-          : place.location.lat;
-      let lng =
-        typeof place.location.lng === "function"
-          ? place.location.lng()
-          : place.location.lng;
+      let name = place.name || "Unknown Name";
+      let lat = place.geometry?.location?.lat;
+      let lng = place.geometry?.location?.lng;
 
       // Get Location
 
@@ -119,10 +88,10 @@ async function displayPlaces(places) {
 
       // Default HTML if no photo is shown
       let photosHTML = `<div style="width: 100%; height: 200px; background-color: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center;"> <i class='fas fa-image fa-2x text-muted'></i> </div>`;
-      if (place.photos && place.photos.length > 0 && place.photos[0].Dg) {
-        const photoRef = place.photos[0].Dg.split("/photos/")[1];
+      if (place.photos && place.photos.length > 0) {
+        const photoRef = place.photos[0].photo_reference;
         if (photoRef) {
-          photosHTML = `<img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoRef}&key=${apiKey}" alt="${name}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;">`;
+          photosHTML = `<img src="http://localhost:3001/api/photo?photoreference=${photoRef}" alt="${name}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; ">`;
         }
       }
       return `
