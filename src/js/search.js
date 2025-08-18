@@ -13,6 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+document
+  .querySelector(".btn.btn-warning")
+  .addEventListener("click", function () {
+    window.location.href = "schedule.html";
+  });
+
+
+
 async function performSearch() {
   const searchInput = document.querySelector(".search-input");
   const userQuery = searchInput.value.trim();
@@ -43,18 +51,19 @@ async function performSearch() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userQuery: userQuery,
-        userLocation: userLocation,
+        usersQuery: userQuery,
+        usersLocation: userLocation,
       }),
     });
 
     // Data response from backend
     const data = await response.json();
+    console.log("Response from server:", data);
 
     if (data.error) {
       throw new Error(data.error);
     }
-
+    console.log("displayPlaces function:", typeof displayPlaces);
     displayPlaces(data.places);
 
     //Test
@@ -63,16 +72,16 @@ async function performSearch() {
     console.error("Search error: ", error);
     document.getElementById("nearby-places-container").innerHTML =
       '<p class="text-center text-danger">Error performing search. Please try again.</p>';
-  }finally{
-    document.getElementById('places-loading-spinner').style.display = 'none';
+  } finally {
+    document.getElementById("places-loading-spinner").style.display = "none";
   }
 }
 
-// function getUsersLocation() {
-//     return new Promise((resolve, reject) => {
-//       if (!navigator.geolocation) {
-//         return reject(Error("Geolocation is not supported by your browser"));
-//       }
-//       navigator.geolocation.getCurrentPosition(resolve, reject);
-//     });
-//   }
+function getUsersLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      return reject(Error("Geolocation is not supported by your browser"));
+    }
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+}

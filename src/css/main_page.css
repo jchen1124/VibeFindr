@@ -207,6 +207,17 @@
   padding-top: 20px; /* Or line-height: 60px; */
 }
 
+.btn {
+  background-color: var(--accent-color);
+  color: var(--secondary-color);
+  border: none;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--accent-color);
+}
+
 @keyframes gradient-animation {
   0% {
     background-position: 0% 50%;

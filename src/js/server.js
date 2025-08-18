@@ -12,7 +12,7 @@ app.use(cors()); // allows frontend to make request to back end
 app.use(express.json());
 
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-const OPENAI_API_KEY = new OpenAI({
+const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -123,19 +123,22 @@ app.post("/api/search-places", async (req, res) => {
       return res.status(400).json({ error: "user query required" });
     }
 
-    const aiResponse = await OpenAI.completions.create({
+    const aiResponse = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
           content: `You are a travel assistant. Parse the user's request and return a JSON object with:
-          - location: city/area they want to explore
-          - type: type of place (restaurant, tourist_attraction, bar, mall etc.)
-          - radius: search radius in meters (default 7000)
+          - type: type of place(s). If multiple types mentioned, separate with " and " (e.g., "bar and park", "restaurant and cafe")
+          - radius: search radius in meters (default 10000)
           - keywords: relevant search terms
           - group_size: number of people (if mentioned)
-          
-          Return ONLY valid JSON, no other text.`,
+
+        Examples:
+        "bars and parks" → {"type": "bar and park", "radius": 10000, "keywords": "bars parks"}
+        "restaurants and cafes" → {"type": "restaurant and cafe", "radius": 10000, "keywords": "restaurants cafes"}
+
+        Return ONLY valid JSON, no other text.`,
         },
         {
           role: "user",
@@ -148,30 +151,137 @@ app.post("/api/search-places", async (req, res) => {
     // fill in required content
     // Hopefully for location: try to use users current location
 
-    const parsedQuery = JSON.parse(aiResponse.choices[0].message.content)
-    const location = usersLocation ? `${usersLocation.lat}, ${usersLocation.lng}` : '40.7128,-74.0060';
-    
+    const parsedQuery = JSON.parse(aiResponse.choices[0].message.content);
+
+    console.log("AI response:", aiResponse);
+    console.log("Parsed query:", parsedQuery);
+
+    const location = usersLocation
+      ? `${usersLocation.lat}, ${usersLocation.lng}`
+      : "40.7128,-74.0060";
 
     const placesResponse = await axios.get(
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
       {
         params: {
           location: location,
-          radius:  parsedQuery.location || 7000,
-          type: parsedQuery.type || 'tourist_attraction',
+          radius: parsedQuery.radius || 10000,
+          type: parsedQuery.type || "tourist_attraction",
           keyword: parsedQuery.keywords,
-          key: GOOGLE_MAPS_API_KEY
-        }
+          key: GOOGLE_MAPS_API_KEY,
+        },
       }
     );
     res.json({
       places: placesResponse.data.results,
       parsedQuery: parsedQuery,
-      originalQuery: userQuery,
-      userLocation: userLocation
-    })
+      originalQuery: usersQuery,
+      userLocation: usersLocation,
+    });
   } catch (error) {
-    console.error("Error");
+    console.error("Full error details:", error);
+    console.error("Error message:", error.message);
+    console.error("Error stack:", error.stack);
+    res.status(500).json({
+      error: "Failed to search places",
+      details: error.message,
+    });
+  }
+});
+
+app.post("/api/generate-schedule", async (req, res) => {
+  try {
+    console.log("Received request to generate schedule with body:", req.body);
+    const {
+      startTime,
+      endTime,
+      location,
+      coordinates,
+      interests,
+      budget,
+      groupSize,
+      specialRequests,
+    } = req.body;
+
+    const prompt = `Create a detailed day schedule for a person with these preferences:  // Fixed typo: "scedule" → "schedule"
+    Time Available: ${startTime} to ${endTime}
+    Location: ${location}
+    Interests: ${interests.join(", ")}
+    Budget: ${budget}
+    Group Size: ${groupSize}
+    Special Requests: ${specialRequests}
+    
+    Please return a JSON array with schedule items. Each item should have:
+    - time: time slot (e.g., "10:00 AM - 11:00 AM")
+    - activity: what to do
+    - description: brief description of the activity
+    - category: type of activity (e.g., "food", "culture", "outdoor", "attraction", "shopping", "entertainment", "relaxation")
+    
+    Return ONLY valid JSON, no other text.`;
+
+    const aiResponse = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a travel planner AI. Generate detailed schedules based on user preferences. Return ONLY valid JSON, no markdown formatting, no code blocks, no other text.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+      temperature: 0.5,
+    });
+
+    // Clean the response content before parsing
+    let responseContent = aiResponse.choices[0].message.content;
+
+    // Remove markdown code blocks if they exist
+    if (responseContent.includes("```json")) {
+      responseContent = responseContent
+        .replace(/```json\n?/g, "")
+        .replace(/```\n?/g, "");
+    }
+    if (responseContent.includes("```")) {
+      responseContent = responseContent.replace(/```\n?/g, "");
+    }
+
+    // Trim whitespace
+    responseContent = responseContent.trim();
+
+    console.log("Cleaned response content:", responseContent);
+
+    try {
+      // locate the choices[0] array in the response and get the first answer in that array
+      // Inside the first answer, get the message object
+      // and then get the content of that message
+      // It returns a JSON object so use JSON.parse to convert it to a JavaScript object
+      const schedule = JSON.parse(responseContent);
+      console.log("Generated schedule:", schedule);
+      res.json({
+        schedule: schedule,
+        userPreferences: req.body,
+      });
+    } catch (parseError) {
+      console.error("JSON parse error:", parseError);
+      console.error("Failed to parse content:", responseContent);
+      res.status(500).json({
+        error: "Failed to parse AI response",
+        details: "The AI returned invalid JSON format",
+        rawContent: responseContent,
+      });
+    }
+  } catch (error) {
+    console.error("Error generating schedule:", error);
+    console.error("Error message:", error.message);
+    console.error("Error stack:", error.stack);
+    res.status(500).json({
+      error: "Failed to generate schedule",
+      details: error.message,
+      stack: error.stack,
+    });
   }
 });
 
