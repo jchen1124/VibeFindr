@@ -1,4 +1,5 @@
-import { states } from "../data/default_place_data.js";
+import { states } from "../../../src/data/default_place_data.js";
+
 
 document
   .getElementById("explore-button")
