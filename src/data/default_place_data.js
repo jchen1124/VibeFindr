@@ -2,7 +2,7 @@ export const states = [
   {
     id: "california",
     name: "California",
-    image: "../src/images/california.jpg",
+    image: "./images/california.jpg",
 
     activities: [
       {
@@ -28,7 +28,7 @@ export const states = [
   {
     id: "new-york",
     name: "New York",
-    image: "../src/images/new_york.jpeg",
+    image: "./images/new_york.jpeg",
 
     activities: [
       {
@@ -52,7 +52,7 @@ export const states = [
   {
     id: "florida",
     name: "Florida",
-    image: "../src/images/florida.jpg",
+    image: "./images/florida.jpg",
 
     activities: [
       {
@@ -76,7 +76,7 @@ export const states = [
   {
     id: "rome",
     name: "Rome",
-    image: "../src/images/rome.jpg",
+    image: "./images/rome.jpg",
 
     activities: [
       {
@@ -105,7 +105,7 @@ export const states = [
   {
     id: "united-kingdom",
     name: "United Kingdom",
-    image: "../src/images/london.jpg",
+    image: "./images/london.jpg",
 
     activities: [
       {
@@ -135,7 +135,7 @@ export const states = [
   {
     id: "japan",
     name: "Japan",
-    image: "../src/images/japan.jpg",
+    image: "./images/japan.jpg",
 
     activities: [
       {

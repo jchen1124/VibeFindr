@@ -2,7 +2,7 @@ export const states = [
   {
     id: "california",
     name: "California",
-    image: "./src/images/california.jpg",
+    image: "./images/california.jpg",
 
     activities: [
       {
@@ -104,7 +104,7 @@ export const states = [
 
   {
     id: "united-kingdom",
-    name: "United King",
+    name: "United Kingdom",
     image: "./images/london.jpg",
 
     activities: [
@@ -139,24 +139,22 @@ export const states = [
 
     activities: [
       {
-        name: "Buckingham Palace",
+        name: "Mount Fuji",
         description:
-          "Buckingham Palace, the King's official London residence, is one of England’s most iconic landmarks.",
-        location: "London, England",
+          "Japan's highest mountain and iconic symbol, offering breathtaking views and hiking opportunities.",
+        location: "Honshu, Japan",
       },
-
       {
-        name: "Westminster Abbey",
+        name: "Senso-ji Temple",
         description:
-          "Westminster Abbey is a historic church in London known for royal coronations, weddings, and burials. It’s a masterpiece of Gothic architecture and a symbol of British heritage.",
-        location: "London, United Kingdom",
+          "Tokyo's oldest temple, known for its massive red lantern and traditional architecture.",
+        location: "Tokyo, Japan",
       },
-
       {
-        name: "Dover Castle",
+        name: "Fushimi Inari Shrine",
         description:
-          "Dover Castle is one of England’s largest and oldest castles, known as the “Key to England” for its strategic role in defense. Perched on the White Cliffs, it has protected the English coast for over 900 years.",
-        location: "Kent United Kingdom",
+          "Famous for its thousands of red torii gates creating a stunning tunnel effect.",
+        location: "Kyoto, Japan",
       },
     ],
   },
