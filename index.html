@@ -10,14 +10,18 @@
       integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="src/css/style.css" />
   </head>
   <body>
     <div class="hero">
       <div class="nav-buttons">
+        <a href="#features-target">
+          <button class="features button">Features</button>
+        </a>
         <button id="explore-button" class="button sign-up">Explore</button>
-        <!-- <button class="button login">Login</button> -->
+
         <!-- google login -->
         <div
           id="g_id_onload"
@@ -52,61 +56,58 @@
     </section>
 
     <!-- Features -->
-    <section>
+    <section id="features-target">
       <div class="container mt-5">
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
           <div class="col d-flex align-items-start">
             <div
-              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
+              class="icon-square text-body-emphasis bg-body-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
             >
-              <svg class="bi" width="1em" height="1em" aria-hidden="true">
-                <use xlink:href="#toggles2"></use>
-              </svg>
+            <i class="bi bi-calendar-check-fill"></i>
             </div>
             <div>
-              <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+              <h3 class="fs-2 text-body-emphasis">Personalized Schedule</h3>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                Get custom-built itineraries tailored to your interests, budget,
+                and time constraints. We can help create detailed day plans that
+                match your travel style, from foodie adventures to cultural
+                experiences.
               </p>
-              <a href="#" class="btn btn-primary"> Primary button </a>
+              <!-- <a href="#" class="btn btn-primary"> Primary button </a> -->
             </div>
           </div>
           <div class="col d-flex align-items-start">
             <div
-              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
+              class="icon-square text-body-emphasis bg-body-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
             >
-              <svg class="bi" width="1em" height="1em" aria-hidden="true">
-                <use xlink:href="#cpu-fill"></use>
-              </svg>
+            <i class="bi bi-people-fill"></i>
             </div>
             <div>
-              <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+              <h3 class="fs-2 text-body-emphasis">Group Travel Planning</h3>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                Plan trips for any group size with ease. Our platform adapts
+                recommendations based on your group's preferences, making it
+                perfect for solo travelers, couples, or large groups.
               </p>
-              <a href="#" class="btn btn-primary"> Primary button </a>
+              <!-- <a href="#" class="btn btn-primary"> Primary button </a> -->
             </div>
           </div>
           <div class="col d-flex align-items-start">
             <div
-              class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
+              class="icon-square text-body-emphasis bg-body-white d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3"
             >
-              <svg class="bi" width="1em" height="1em" aria-hidden="true">
-                <use xlink:href="#tools"></use>
-              </svg>
+            <i class="bi bi-geo-alt-fill"></i>
             </div>
             <div>
-              <h3 class="fs-2 text-body-emphasis">Featured title</h3>
+              <h3 class="fs-2 text-body-emphasis">
+                Real-Time Location
+              </h3>
               <p>
-                Paragraph of text beneath the heading to explain the heading.
-                We'll add onto it with another sentence and probably just keep
-                going until we run out of words.
+                Find the best places near you with real-time location data. Get
+                instant recommendations based on your current location, complete
+                with photos, ratings, and detailed information.
               </p>
-              <a href="#" class="btn btn-primary"> Primary button </a>
+              <!-- <a href="#" class="btn btn-primary"> Primary button </a> -->
             </div>
           </div>
         </div>
