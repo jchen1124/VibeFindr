@@ -1,11 +1,12 @@
 {
   "name": "vibefndr",
   "version": "1.0.0",
-  "main": "default_place_data.js",
+  "main": "src/js/server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/js/server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon src/js/server.js"
   },
   "repository": {
     "type": "git",
