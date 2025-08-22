@@ -10,6 +10,7 @@ const PORT = 3001;
 
 app.use(cors()); // allows frontend to make request to back end
 app.use(express.json());
+app.use(express.static("public")); // serve static files from public folder
 
 const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 const openai = new OpenAI({

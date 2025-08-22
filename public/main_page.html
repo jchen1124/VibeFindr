@@ -14,7 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
-    <link rel="stylesheet" href="src/css/main_page.css" />
+    <link rel="stylesheet" href="../src/css/main_page.css" />
   </head>
   <body class="main-page">
     <!-- Header -->
@@ -26,7 +26,7 @@
               class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
             >
               <a
-                href="/"
+                href="../public/index.html"
                 class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
               >
                 <svg
@@ -45,7 +45,7 @@
                 <li>
                   <!-- goes back to home page -->
                   <a
-                    href="/"
+                    href="../public/index.html"
                     class="nav-link px-2 text-white d-flex align-items-center"
                   >
                     <div class="vf-logo me-2">
@@ -78,7 +78,13 @@
                 <!-- <button type="button" class="btn btn-outline-light me-2">
                   Login
                 </button> -->
-                <button type="button" class="btn btn-warning">Schedule Your Day</button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  id="schedule-button"
+                >
+                  Schedule Your Day
+                </button>
               </div>
             </div>
           </div>
@@ -134,7 +140,7 @@
             <div class="carousel-item active">
               <div class="carousel-img-overlay"></div>
               <img
-                src="src/images/slide-image1.jpg"
+                src="../src/images/slide-image1.jpg"
                 class="d-block w-100"
                 alt="Friend Group"
               />
@@ -142,7 +148,7 @@
             <div class="carousel-item">
               <div class="carousel-img-overlay"></div>
               <img
-                src="src/images/slide-image2.jpg"
+                src="../src/images/slide-image2.jpg"
                 class="d-block w-100"
                 alt="Plane"
               />
@@ -150,7 +156,7 @@
             <div class="carousel-item">
               <div class="carousel-img-overlay"></div>
               <img
-                src="src/images/slide-image3.jpg"
+                src="../src/images/slide-image3.jpg"
                 class="d-block w-100"
                 alt="Woman Travelling"
               />
@@ -197,11 +203,9 @@
       </div>
     </section>
 
-   
-
-    <script src="src/js/places.js"></script>
-    <script src="src/js/search.js"></script>
-    <!-- <script src="src/js/schedule.js"></script> -->
+    <script src="../src/js/places.js"></script>
+    <script src="../src/js/search.js"></script>
+    <!-- <script src="../src/js/schedule.js"></script> -->
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"

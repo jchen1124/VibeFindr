@@ -14,7 +14,7 @@ function createStateCard(state) {
                 src="${state.image}" 
                 alt="${state.name}" 
                 class="place-image"
-                onerror="this.onerror=null; console.error('Failed to load image: ${state.image}'); this.src='src/images/placeholder.jpg';"
+                onerror="this.onerror=null; console.error('Failed to load image: ${state.image}'); this.src='../src/images/placeholder.jpg';"
             >
             <div class="place-info">
                 <h3 class="place-name">${state.name}</h3>

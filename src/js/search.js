@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document
-  .querySelector(".btn.btn-warning")
+  .getElementById("schedule-button")
   .addEventListener("click", function () {
-    window.location.href = "schedule.html";
+    window.location.href = "../public/schedule.html";
   });
 
 
