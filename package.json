@@ -4,7 +4,7 @@
   "main": "default_place_data.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node src/js/server.js",
     "dev": "nodemon server.js"
   },
   "repository": {
