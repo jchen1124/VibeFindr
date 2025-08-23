@@ -1,4 +1,5 @@
-import config from "./config.js";
+// import config from "../config/config.js";
+// const apiKey = config.GOOGLE_PLACES_API_KEY;
 
 document.addEventListener("DOMContentLoaded", () => {
   findAndShowNearbyPlaces();
@@ -20,7 +21,7 @@ async function findAndShowNearbyPlaces() {
     const maxResult = 6;
     const type = "tourist_attraction";
     const response = await fetch(
-      `${config.apiBaseUrl}/places?location=${locationString}&type=${type}&radius=${radius}`
+      `http://localhost:3001/api/places?location=${locationString}&type=${type}&radius=${radius}`
     );
     const data = await response.json();
     console.log("full place data: ", data);
@@ -49,7 +50,7 @@ function getUsersLocation() {
 async function reverseGeocode(lat, lng) {
   try {
     const response = await fetch(
-      `${config.apiBaseUrl}/reverse-geocode?lat=${lat}&lng=${lng}`
+      `http://localhost:3001/api/reverse-geocode?lat=${lat}&lng=${lng}`
     );
     const data = await response.json();
     return data.address || "Address not found";
@@ -77,9 +78,9 @@ async function displayPlaces(places) {
       <div class="card h-100 shadow-sm hover-effect">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="${config.apiBaseUrl}/photo?photoreference=${
-        place.photos ? place.photos[0].photo_reference : ""
-      }&maxwidth=300" 
+            <img src="http://localhost:3001/api/photo?photoreference=${
+              place.photos ? place.photos[0].photo_reference : ""
+            }&maxwidth=300" 
                  class="img-fluid rounded-start h-100 object-fit-cover" 
                  alt="${place.name}"
                  onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
