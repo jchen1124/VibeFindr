@@ -1,12 +1,12 @@
 {
   "name": "vibefndr",
   "version": "1.0.0",
-  "main": "src/js/server.js",
+  "main": "public/js/server.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/js/server.js",
-    "dev": "nodemon src/js/server.js",
+    "start": "node public/js/server.js",
+    "dev": "nodemon public/js/server.js",
     "build": "echo 'No build needed for static frontend'"
   },
   "repository": {
