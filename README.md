@@ -2,23 +2,6 @@
 
 A smart travel planning application that uses AI to help you discover places and create personalized itineraries.
 
-## Project Structure
-
-```
-vibefndr/
-├── public/                 # Static HTML files (served by Express)
-│   ├── index.html         # Homepage
-│   ├── main_page.html     # Main search page
-│   └── schedule.html      # Schedule planning page
-├── src/                   # Source code
-│   ├── css/              # Stylesheets
-│   ├── js/               # JavaScript files
-│   ├── images/           # Image assets
-│   └── data/             # Data files
-└── src/js/server.js      # Express server
-```
-
-## How to Run
 
 1. **Install dependencies:**
 
